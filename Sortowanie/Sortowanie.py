@@ -34,22 +34,57 @@ class Array:
             min_id=self.get_min(i)
             self.swap(i,min_id)
 
-    def insert(self,id):
-        next_id=0
-        for i in range(0,id+1):
-            if self.a[id] >= self.a[i]:
-                next_id=i
-                break
-
-        for i in range(id,next_id-1):
-            self.a[i]=self.a[i-1]
-
-        self.a[next_id]=val
-    
-    def insert_sort(self):
+    #doesn't work
+    def insert_sort(self): 
         for i in range(1,self.size):
-            self.insert(i)
+            tmp=self.a[i]
+            for j in range(i-1,-1):
+                if self.a[j] > tmp:
+                    self.a[j+1]=self.a[j]
+                else:
+                    self.a[j+1]=tmp
+                    break
 
+    def bubble_sort(self):
+        swap=True
+        while swap==True:
+            swap=False
+            for i in range(0,self.size-1):
+                if self.a[i] > self.a[i+1]:
+                    self.swap(i,i+1)
+                    swap=True
+
+    def partition(self,start,end):
+        x=self.a[end]
+        i=start-1
+        j=end+1
+
+        while i<j:
+            i+=1
+            j-=1
+            while self.a[i] < x:
+                i+=1
+            while self.a[j] > x:
+                j-=1
+            if i<j:
+                self.swap(i,j)
+        return j
+
+    def quick_sort(self, start, end):
+
+        if start < end:
+            middle=self.partition(start,end)
+            self.quick_sort(start,middle)
+            self.quick_sort(middle+1,end)
+
+
+
+
+
+
+
+
+                    
 
 
 
@@ -58,7 +93,7 @@ class Array:
 #MAIN
 T=Array(10)
 T.print()
-T.insert_sort()
+T.bubble_sort()
 T.print()
 
 
