@@ -6,7 +6,7 @@ class Array:
     def __init__(self,n):
         self.a=[]
         for i in range(0,n):
-            self.a.append(random.randrange(0,1000))
+            self.a.append(random.randrange(0,50))
         self.size=len(self.a)
 
     def print(self):
@@ -77,23 +77,30 @@ class Array:
             self.quick_sort(start,middle)
             self.quick_sort(middle+1,end)
 
+    def count_sort(self,n):
+        b=self.a
+        c=[]
 
+        for i in len(self.a):
+            c[self.a[i]]+=1
 
+        for i in range(1,n):
+            c[i]+=c[i-1]
 
+        for i in range (len(self.a),0):
+            b[c[self.a[i]]]=a[i]
+            c[self.a[i]]-=1
 
-
-
-
-                    
+        print(b)
 
 
 
 
 
 #MAIN
-T=Array(10)
+T=Array(20)
 T.print()
-T.bubble_sort()
+T.count_sort(50)
 T.print()
 
 
